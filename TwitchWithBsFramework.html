@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+
+    <style>
+      body {
+        color: #0d0d0d;
+        }
+
+      .container-fluid  {
+        padding-left: 0px;
+      }
+      /*Navbar*/
+
+      li {
+        padding: 5px 30px;
+        }
+
+      .fa-twitch {
+        color: #772ce8; 
+        font-size: 22px; 
+        margin-top: 8px;
+        }
+
+      a {
+        color: #0e0e10; 
+        text-decoration: none !important;
+        }
+
+      a:hover {color: #772ce8;}
+
+      .is-active {
+        border-bottom: 2px solid; color: #772ce8;
+        }
+
+      .search-section {
+        padding: 0px 0px 0px 155px;
+        }
+
+      .form-control:focus {
+        border: 2px solid #9147ff; outline: none;
+        }
+
+      .btn__search {
+        background-color: #772ce8;
+        color: white;
+        }
+
+      .btn__search:hover {
+        background-color: #4700b3;
+        color: white;
+        }
+
+      .btn__login {
+        background-color:#e6e6e6; 
+        border-radius: 10%; 
+        margin: 0px 5px;
+        }
+      
+      .btn__login--hover:hover {
+        background-color: #d9d9d9;
+      }
+      
+      .btn__signup {
+        background-color: #772ce8;
+        color: white;
+        border-radius: 10%; 
+        padding: 6px;
+        }
+      
+      .btn__signup:hover {
+        background-color: #4700b3;
+        color: white;
+      }
+      
+
+      /*Sidebar*/
+
+      .sidebar {
+        padding-left: 0px;
+        padding-right: 15px;
+      }
+
+      .sidebar-nav {
+        min-height: 100%;
+        width: 80%;
+        background-color: #f2f2f2;
+        margin-top: 80px;
+        padding: 0px 0px 0px 10px;
+      }
+
+      .sidebar-nav__recommended__title {
+        font-size: 16px;
+        padding: 0px 4px 0px;
+      }
+
+      .btn-collapse {
+        padding: 3px;
+      }
+
+      .sidebar-nav__recommended__icon {
+        border-radius: 50%;
+        width: 25%;
+        padding: 4px;
+      }
+
+      .sidebar-nav__recommended--bg-grey:hover {
+        background-color: #d9d9d9;
+      }
+
+      .recommendend-streamer__name {
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .recommended-streamer__current-activity {
+        font-size: 14px;
+        font-weight: 300;
+        color: #262626;
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+      }
+        
+      .dot {
+        height: 10px;
+        width: 10px;
+        margin: 7px;
+        background-color: rgb(255, 0, 0);
+        border-radius: 50%;
+      }
+      
+      /*Main*/
+
+      .browse {
+        padding: 100px 0px 0px 0px;
+      }
+
+      .browse_category {
+        padding: 0px 0px 10px;
+        margin: 0px 0px 0px 18px;
+      }
+
+      .filter--bold--small {
+        font-size: 14px;
+        font-weight: bold;
+        padding: 0px 5px;
+        white-space: pre;
+      }
+
+      .bg-light-grey {
+        background-color: #e6e6e6;
+        font-size: 14px;
+      }
+
+      .no-padding {
+        padding: 0px;
+      }
+
+
+      /*Categories*/
+
+      .category {
+        margin: 10px;
+      }
+
+      .category__cover {
+        transition: transform 0.1s ease;
+      }
+
+      .category__cover:hover {
+          box-shadow: -2px 2px 0 2px #9147ff;
+          transform: translate(5px, -5px);
+      }
+
+      .views__value {
+        font-size: 12px;
+      }
+
+      .btn__tag {
+        padding: .2rem .4rem;
+        border: none;
+        border-radius: 37.5%;
+        background-color: #e6e6e6;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .btn__tag:hover {
+        background-color: #cccccc;
+      }
+
+    </style>
+
+    <title>Twitch</title>
+  </head>
+  <body>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light text-dark fixed-top d-flex">
+      <ul class="collapse navbar-collapse list-unstyled justify-content-start" id="navbarSupportedContent">
+        <li><a href="#"><i class="fab fa-twitch" aria-hidden="true"></i></a></li>
+        <li><a href="#">Discover</a></li>
+        <li class="is-active"><a href="#">Browse</a></li>
+        <li><a href="#">Try Prime</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+              <i class="fas fa-ellipsis-h" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">About</a>
+            <a class="dropdown-item" href="#">Advertisers</a>
+            <a class="dropdown-item" href="#">Blog</a>
+            <a class="dropdown-item" href="#">Developers</a>
+            <a class="dropdown-item" href="#">Download Apps</a>
+            <a class="dropdown-item" href="#">Jobs</a>
+            <a class="dropdown-item" href="#">Partners</a>
+            <a class="dropdown-item" href="#">Press</a>
+            <a class="dropdown-item" href="#">Store</a>
+            <a class="dropdown-item" href="#">Turbo</a>
+          </div>
+        </li>
+        <li><form class="form-inline my-2 my-lg-0 search-section flex-nowrap">
+            <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn__search my-2 my-sm-0" type="submit">Search</button>
+          </form></li>
+      </ul>
+      <ul class="d-flex flex-row list-unstyled">
+        <button class="btn btn__login btn__login--hover">Log In</button>
+        <button class="btn btn__signup signup_exception" >Sign Up</button>
+      </ul>
+    </nav>
+    <div class="container-fluid">
+      <div class="d-flex" >
+        <!--Side Navbar-->
+        <nav class="col-md-2 d-none d-md-block sidebar fixed-left">
+          <div class="sidebar-nav">
+            <div class="nav flex-column">
+              <div class="d-flex flex-row justify-content-around align-items-baseline flex-nowrap">
+                <div class="sidebar-nav__recommended__title h6">Recommended Channels</div>
+                <button class="btn sidebar-nav__recommended--hover btn-collapse">
+                  <i class="fas fa-chevron-circle-left"></i>
+                </button>
+              </div>
+              <div class="container__recommended-streamer">
+                <div class="sidebar-nav__recommended--bg-grey">
+                  <a href="#" style="text-decoration:none; color:inherit;" class="d-flex flex-row align-items-center">
+                    <div class="d-flex flex-row justify-content-around align-items-center">
+                      <img src="https://source.unsplash.com/Sgqo6Cohf9M/70x70" alt="streamer" class="sidebar-nav__recommended__icon">
+                      <div class="recommended-streamer flex-column">
+                        <div class="recommendend-streamer__name">PecoPeco</div>
+                        <div class="recommended-streamer__current-activity d-inline-block text-truncate" style="max-width: 80px;"><span>Makers and Crafting</span></div>
+                      </div>
+                    </div>
+                    <div class="recommended-streamer__viewers d-flex flex-row align-items-center">
+                      <div class="dot"></div>
+                      <div class="recommended-streamer__viewers--value">2.5K</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="container__recommended-streamer">
+                <div class="sidebar-nav__recommended--bg-grey">
+                  <a href="#" style="text-decoration:none; color:inherit;" class="d-flex flex-row align-items-center">
+                    <div class="d-flex flex-row justify-content-around align-items-center">
+                      <img src="https://source.unsplash.com/rDEOVtE7vOs/70x70" alt="streamer" class="sidebar-nav__recommended__icon">
+                      <div class="recommended-streamer flex-column">
+                        <div class="recommendend-streamer__name">Valkirya</div>
+                        <div class="recommended-streamer__current-activity d-inline-block text-truncate" style="max-width: 80px;">Art</div>
+                      </div>
+                    </div>
+                    <div class="recommended-streamer__viewers d-flex flex-row align-items-center">
+                      <div class="dot"></div>
+                      <div class="recommended-streamer__viewers--value">2.2K</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="container__recommended-streamer">
+                <div class="sidebar-nav__recommended--bg-grey">
+                  <a href="#" style="text-decoration:none; color:inherit;" class="d-flex flex-row align-items-center">
+                    <div class="d-flex flex-row justify-content-around align-items-center">
+                      <img src="https://source.unsplash.com/ROJFuWCsfmA/70x70" alt="streamer" class="sidebar-nav__recommended__icon">
+                      <div class="recommended-streamer flex-column">
+                        <div class="recommendend-streamer__name">Ryia</div>
+                        <div class="recommended-streamer__current-activity d-inline-block text-truncate" style="max-width: 80px;">Just Chatting</div>
+                      </div>
+                    </div>
+                    <div class="recommended-streamer__viewers d-flex flex-row align-items-center">
+                      <div class="dot"></div>
+                      <div class="recommended-streamer__viewers--value">2K</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="container__recommended-streamer">
+                <div class="sidebar-nav__recommended--bg-grey">
+                  <a href="#" style="text-decoration:none; color:inherit;" class="d-flex flex-row align-items-center">
+                    <div class="d-flex flex-row justify-content-around align-items-center">
+                      <img src="https://source.unsplash.com/nd0AqhGk5ZI/70x70" alt="streamer" class="sidebar-nav__recommended__icon">
+                      <div class="recommended-streamer flex-column">
+                        <div class="recommendend-streamer__name">Rock</div>
+                        <div class="recommended-streamer__current-activity d-inline-block text-truncate" style="max-width: 80px;">Food & Drink</div>
+                      </div>
+                    </div>
+                    <div class="recommended-streamer__viewers d-flex flex-row align-items-center">
+                      <div class="dot"></div>
+                      <div class="recommended-streamer__viewers--value">1.8K</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="container__recommended-streamer">
+                <div class="sidebar-nav__recommended--bg-grey">
+                  <a href="#" style="text-decoration:none; color:inherit;" class="d-flex flex-row align-items-center">
+                    <div class="d-flex flex-row justify-content-around align-items-center">
+                      <img src="https://source.unsplash.com/hh3ViD0r0Rc/70x70" alt="streamer" class="sidebar-nav__recommended__icon">
+                      <div class="recommended-streamer flex-column">
+                        <div class="recommendend-streamer__name">MarkRetro</div>
+                        <div class="recommended-streamer__current-activity d-inline-block text-truncate" style="max-width: 80px;">Retro</div>
+                      </div>
+                    </div>
+                    <div class="recommended-streamer__viewers d-flex flex-row align-items-center">
+                      <div class="dot"></div>
+                      <div class="recommended-streamer__viewers--value">500</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="container__recommended-streamer">
+                <div class="sidebar-nav__recommended--bg-grey">
+                  <a href="#" style="text-decoration:none; color:inherit;" class="d-flex flex-row align-items-center">
+                    <div class="d-flex flex-row justify-content-around align-items-center">
+                      <img src="https://source.unsplash.com/NR705beN_CU/70x70" alt="streamer" class="sidebar-nav__recommended__icon">
+                      <div class="recommended-streamer flex-column">
+                        <div class="recommendend-streamer__name">Roxas</div>
+                        <div class="recommended-streamer__current-activity d-inline-block text-truncate" style="max-width: 80px;">Music & Performing Arts</div>
+                      </div>
+                    </div>
+                    <div class="recommended-streamer__viewers d-flex flex-row align-items-center">
+                      <div class="dot"></div>
+                      <div class="recommended-streamer__viewers--value">5K</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!--Main-->
+        <main>
+          <div class="h1 browse">Browse</div>
+          <div class="sub_container d-flex row">
+            <ul class="d-flex list-unstyled">
+              <li class="h4  is-active browse_category"><a href="#">Categories</a></li>
+              <li class="h4 browse_category"><a href="#">Live Channels</a></li>
+            </ul>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div>
+              <form class="form-inline my-2 my-lg-0 search-section flex-nowrap no-padding">
+                <label for="formInlineSelect1" class="filter--bold--small">Filter by</label>
+                <input class="form-control mr-sm-2 bg-light-grey" type="search" placeholder="Search Tags" aria-label="Search">
+              </form>
+            </div>
+            <div>
+              <form class="d-flex align-items-baseline">
+                <label for="formControlSelect1" class="filter--bold--small">Sort by</label>
+                <select class="form-control filter--bold--small bg-light-grey">
+                  <option>Recommended For You</option>
+                  <option>Viewers(High to Low)</option>
+                </select>
+              </form>
+            </div> 
+          </div>
+          <!--Categories-->
+          <div class="category__list">
+            <div class="d-flex flex-row justify-content-start flex-wrap">
+              <div class="category d-flex flex-column h6">
+                <a href="#" class="category__cover">
+                  <img src="https://source.unsplash.com/Xe4t9SZ0iOs/200x270" alt="Chatting">
+                </a>
+                <a href="#">Just Chatting</a>
+                <a href="#">
+                  <div class="views__value">62.5K viewers</div>
+                </a>
+                <div class="tag__section">
+                  <a href="#">
+                      <button class="btn__tag">IRL</button>
+                  </a>
+                </div>
+              </div>
+              <div class="category d-flex flex-column h6">
+                <a href="#" class="category__cover">
+                  <img src="https://source.unsplash.com/isv6tX3aBT0/200x270" alt="Karaoke">
+                </a>
+                <a href="#">Karaoke!</a>
+                <a href="#">
+                  <div class="views__value">20K viewers</div>
+                </a>
+                <div class="tag__section">
+                  <a href="#">
+                    <button class="btn__tag">IRL</button>
+                    <button class="btn__tag">Music</button>
+                  </a>
+                </div>
+              </div>
+              <div class="category d-flex flex-column h6">
+                <a href="#" class="category__cover">
+                  <img src="https://source.unsplash.com/c-NBiJrhwdM/200x270" alt="Music">
+                </a>
+                <a href="#">Music & Performing Arts</a>
+                <a href="#">
+                  <div class="views__value">15K viewers</div>
+                </a>
+                <div class="tag__section">
+                  <a href="#">
+                    <button class="btn__tag">IRL</button>
+                    <button class="btn__tag">Music</button>
+                    <button class="btn__tag">Creative</button>
+                  </a>
+                </div>
+              </div>
+              <div class="category d-flex flex-column h6">
+                <a href="#" class="category__cover">
+                  <img src="https://source.unsplash.com/YBElcMKkiy4/200x270" alt="Art">
+                </a>
+                <a href="#">Art</a>
+                <a href="#">
+                  <div class="views__value">13K viewers</div>
+                </a>
+                <div class="tag__section">
+                  <a href="#">
+                    <button class="btn__tag">IRL</button>
+                    <button class="btn__tag">Creative</button>
+                  </a>
+                </div>
+              </div>
+              <div class="category d-flex flex-column h6">
+                <a href="#" class="category__cover">
+                  <img src="https://source.unsplash.com/_EXjK18DOUE/200x270" alt="Traveling">
+                </a>
+                <a href="#">Travel & Outdoors</a>
+                <a href="#">
+                  <div class="views__value">12K viewers</div>
+                </a>
+                <div class="tag__section">
+                  <a href="#">
+                    <button class="btn__tag">IRL</button>
+                  </a>
+                </div>
+              </div>
+              <div class="category d-flex flex-column h6">
+                <a href="#" class="category__cover">
+                  <img src="https://source.unsplash.com/UUPpu2sYV6E/200x270" alt="Talk">
+                </a>
+                <a href="#">Talk Shows & Podcasts</a>
+                <a href="#">
+                  <div class="views__value">9.8K viewers</div>
+                </a>
+                <div class="tag__section">
+                  <a href="#">
+                    <button class="btn__tag">IRL</button>
+                  </a>
+                </div>
+              </div>
+              <div class="category d-flex flex-column h6">
+                <a href="#" class="category__cover">
+                  <img src="https://source.unsplash.com/hdW4rZPHe2g/200x270" alt="Crafting">
+                </a>
+                <a href="#">Makers and Crafting</a>
+                <a href="#">
+                  <div class="views__value">9.2K viewers</div>
+                </a>
+                <div class="tag__section">
+                  <a href="#">
+                    <button class="btn__tag">IRL</button>
+                  </a>
+                  </div>
+              </div>
+              <div class="category d-flex flex-column h6">
+                <a href="#" class="category__cover">
+                  <img src="https://source.unsplash.com/lxH4ZeXXKMI/200x270" alt="Events">
+                </a>
+                <a href="#">Special Events</a>
+                <a href="#">
+                  <div class="views__value">7.6K viewers</div>
+                </a>
+                <div class="tag__section">
+                  <a href="#">
+                    <button class="btn__tag">IRL</button>
+                  </a>
+                </div>
+              </div>
+              <div class="category d-flex flex-column h6">
+                <a href="#" class="category__cover">
+                  <img src="https://source.unsplash.com/W3SEyZODn8U/200x270" alt="Food&Drink">
+                </a>
+                <a href="#">Food & Drink</a>
+                <a href="#">
+                  <div class="views__value">5K viewers</div>
+                </a>
+                <div class="tag__section">
+                  <a href="#">
+                    <button class="btn__tag">IRL</button>
+                  </a>
+              </div>
+              </div>
+              <div class="category d-flex flex-column h6">
+                <a href="#" class="category__cover">
+                  <img src="https://source.unsplash.com/v8XaVfyo41Q/200x270" alt="Retro">
+                </a>
+                <a href="#">Retro</a>
+                <a href="#">
+                  <div class="views__value">3.8K viewers</div>
+                </a>
+                <div class="tag__section">
+                  <a href="#">
+                    <button class="btn__tag">Gaming</button>
+                  </a>
+                </div>
+              </div>
+              <div class="category d-flex flex-column h6">
+                <a href="#" class="category__cover">
+                  <img src="https://source.unsplash.com/L9X8l1yMiv0/200x270" alt="VR">
+                </a>
+                <a href="#">VR Chat</a>
+                <a href="#">
+                  <div class="views__value">2.4K viewers</div>
+                </a>
+                <div class="tag__section">
+                  <a href="#">
+                    <button class="btn__tag">IRL</button>
+                  </a>
+                </div>
+              </div>
+              <div class="category d-flex flex-column h6">
+                <a href="#" class="category__cover">
+                  <img src="https://source.unsplash.com/OKLqGsCT8qs/200x270" alt="ASMR">.
+                </a>
+                <a href="#">ASMR</a>
+                <a href="#">
+                  <div class="views__value">1.5K viewers</div>
+                </a>
+                <div class="tag__section">
+                  <a href="#">
+                    <button class="btn__tag">IRL</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="node_modules/popper.js/dist/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
